@@ -3,14 +3,12 @@ package club.banyuan.blog.bean;
 import lombok.Data;
 
 import java.util.Date;
-import java.util.List;
 
 @Data
-public class Blog {
+public class Comment {
     Integer id;
-    String title;
-    String content;
     Date createdTime;
+    String content;
     Integer userId;
-    List<Comment> comments;
+    Integer blogId;
 }

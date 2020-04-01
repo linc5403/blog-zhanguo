@@ -1,9 +1,12 @@
 package club.banyuan.blog.service;
 
 import club.banyuan.blog.bean.Blog;
+import club.banyuan.blog.bean.Comment;
 import club.banyuan.blog.dao.BlogDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BlogService {
@@ -15,7 +18,8 @@ public class BlogService {
 
     private BlogDao blogDao;
 
+
     public Blog getDetailById(Integer id) {
-        return blogDao.findBlogById(id);
+        return blogDao.getBlogDetail(id);
     }
 }

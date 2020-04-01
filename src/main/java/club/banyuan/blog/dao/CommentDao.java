@@ -7,9 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BlogDao {
-    Blog findBlogById(Integer id);
-    List<Blog> findBlogsByUsername(String username);
-    // 获取blog及其comments
-    Blog getBlogDetail(Integer id);
+public interface CommentDao {
+    List<Comment> findCommentsByBlogId(Integer id);
 }

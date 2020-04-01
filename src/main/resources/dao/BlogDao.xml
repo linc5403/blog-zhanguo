@@ -3,6 +3,24 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="club.banyuan.blog.dao.BlogDao">
+    <resultMap id="blogDetailMap" type="club.banyuan.blog.bean.Blog" autoMapping="true">
+        <id property="id" column="id"></id>
+        <collection property="comments" ofType="club.banyuan.blog.bean.Comment"
+                    autoMapping="true" columnPrefix="comment_">
+            <id property="id" column="id"></id>
+            <id property="createdTime" column="created_time"></id>
+        </collection>
+    </resultMap>
+
+    <select id="getBlogDetail" resultMap="blogDetailMap">
+        -- 要返回blog的对象，而blog的对象中包含有comment的list
+        SELECT blog.id, blog.title , blog.content , blog.created_time , blog.user_id ,
+            comment.id AS comment_id, comment.created_time AS comment_created_time,
+            comment.content AS comment_content, comment.user_id AS comment_user_id,
+            comment.blog_id AS comment_blog_id
+        FROM blog LEFT JOIN comment ON blog.id = comment.blog_id WHERE blog.id = #{id}
+    </select>
+
     <select id="findBlogById" resultType="club.banyuan.blog.bean.Blog">
         SELECT * FROM blog WHERE `id` = #{id}
     </select>
@@ -10,4 +28,5 @@
         SELECT blog.id, blog.title, blog.content, blog.created_time, blog.user_id
             FROM blog JOIN user ON blog.user_id = user.id WHERE user.name= #{username}
     </select>
+
 </mapper>

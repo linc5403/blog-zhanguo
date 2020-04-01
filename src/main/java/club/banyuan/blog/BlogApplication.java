@@ -1,8 +1,10 @@
 package club.banyuan.blog;
 
 import club.banyuan.blog.bean.Blog;
+import club.banyuan.blog.bean.Comment;
 import club.banyuan.blog.bean.User;
 import club.banyuan.blog.dao.BlogDao;
+import club.banyuan.blog.dao.CommentDao;
 import club.banyuan.blog.dao.UserDao;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -22,8 +24,14 @@ public class BlogApplication {
 		User user1 = userDao.findUserByName("aa");
 		System.out.println(user1.toString());
 		BlogDao blogDao = (BlogDao) context.getBean(BlogDao.class);
-		List<Blog> blogs = blogDao.findBlogsByUsername("aa");
-		System.out.println(blogs);
+		Blog blog = blogDao.getBlogDetail(12);
+		System.out.println(blog);
+		/*
+		CommentDao commentDao = (CommentDao) context.getBean(CommentDao.class);
+		List<Comment> comments = commentDao.findCommentsByBlogId(1);
+		System.out.println(comments);
+		 */
+
 	}
 
 }
