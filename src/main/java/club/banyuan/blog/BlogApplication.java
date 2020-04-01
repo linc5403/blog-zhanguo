@@ -22,7 +22,7 @@ public class BlogApplication {
 		User user1 = userDao.findUserByName("aa");
 		System.out.println(user1.toString());
 		BlogDao blogDao = (BlogDao) context.getBean(BlogDao.class);
-		List<Blog> blogs = blogDao.findBlogsByUsername("aa");
+		List<Blog> blogs = blogDao.findBlogsDetailByUsername("王二");
 		System.out.println(blogs);
 	}
 

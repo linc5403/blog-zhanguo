@@ -1,7 +1,7 @@
 package club.banyuan.blog.bean;
 
 public class User {
-    int id;
+    Integer id;
     String name;
     String password;
     String email;
