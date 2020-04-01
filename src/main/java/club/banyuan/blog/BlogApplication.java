@@ -26,12 +26,8 @@ public class BlogApplication {
 		BlogDao blogDao = (BlogDao) context.getBean(BlogDao.class);
 		Blog blog = blogDao.getBlogDetail(12);
 		System.out.println(blog);
-		/*
-		CommentDao commentDao = (CommentDao) context.getBean(CommentDao.class);
-		List<Comment> comments = commentDao.findCommentsByBlogId(1);
-		System.out.println(comments);
-		 */
-
+		List<Blog> blogs = blogDao.findBlogsByUsername("aa");
+		System.out.println(blogs);
 	}
 
 }

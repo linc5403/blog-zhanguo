@@ -3,30 +3,65 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="club.banyuan.blog.dao.BlogDao">
+    <resultMap id="blogMap" type="club.banyuan.blog.bean.Blog" autoMapping="true">
+        <id property="id" column="id"></id>
+        <association property="author" javaType="club.banyuan.blog.bean.User"
+                     autoMapping="true" columnPrefix="author_">
+            <id property="id" column="id"></id>
+        </association>
+    </resultMap>
+
     <resultMap id="blogDetailMap" type="club.banyuan.blog.bean.Blog" autoMapping="true">
         <id property="id" column="id"></id>
+        <association property="author" javaType="club.banyuan.blog.bean.User"
+                     autoMapping="true" columnPrefix="author_">
+            <id property="id" column="id"></id>
+        </association>
         <collection property="comments" ofType="club.banyuan.blog.bean.Comment"
                     autoMapping="true" columnPrefix="comment_">
             <id property="id" column="id"></id>
             <id property="createdTime" column="created_time"></id>
+            <association property="commenter" javaType="club.banyuan.blog.bean.User"
+                         autoMapping="true" columnPrefix="commenter_">
+                <id property="id" column="id"></id>
+            </association>
         </collection>
     </resultMap>
 
     <select id="getBlogDetail" resultMap="blogDetailMap">
         -- 要返回blog的对象，而blog的对象中包含有comment的list
-        SELECT blog.id, blog.title , blog.content , blog.created_time , blog.user_id ,
+        SELECT blog.id, blog.title , blog.content , blog.created_time , blog.user_id,
+            author.id as author_id, author.name as author_name,
+            author.password as author_password, author.email as author_email,
             comment.id AS comment_id, comment.created_time AS comment_created_time,
             comment.content AS comment_content, comment.user_id AS comment_user_id,
-            comment.blog_id AS comment_blog_id
-        FROM blog LEFT JOIN comment ON blog.id = comment.blog_id WHERE blog.id = #{id}
+            comment.blog_id AS comment_blog_id,
+            commenter.id AS comment_commenter_id, commenter.name as comment_commenter_name,
+            commenter.password as comment_commenter_password, commenter.email as comment_commenter_email
+        FROM blog JOIN user as author ON blog.user_id = author.id
+        LEFT JOIN comment ON blog.id = comment.blog_id
+        LEFT JOIN user AS commenter ON comment.user_id = commenter.id
+        WHERE blog.id = #{id}
     </select>
 
     <select id="findBlogById" resultType="club.banyuan.blog.bean.Blog">
         SELECT * FROM blog WHERE `id` = #{id}
     </select>
-    <select id="findBlogsByUsername" resultType="club.banyuan.blog.bean.Blog">
-        SELECT blog.id, blog.title, blog.content, blog.created_time, blog.user_id
+
+    <select id="findBlogsByUsername" resultMap="blogMap">
+        SELECT blog.id, blog.title, blog.content, blog.created_time, blog.user_id,
+            user.id as author_id, user.email as author_email,
+            user.password as author_password, user.name as author_name
             FROM blog JOIN user ON blog.user_id = user.id WHERE user.name= #{username}
     </select>
+
+    <insert id="insertBlog" parameterType="club.banyuan.blog.bean.Blog">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO blog (title, content, user_id)
+        VALUES
+        (#{title}, #{content}, #{author.id})
+    </insert>
 
 </mapper>

@@ -22,4 +22,13 @@ public class BlogService {
     public Blog getDetailById(Integer id) {
         return blogDao.getBlogDetail(id);
     }
+
+    public List<Blog> showAuthorBlogs(String name) {
+        return blogDao.findBlogsByUsername(name);
+    }
+
+    public Integer addBlog(Blog blog) {
+        blogDao.insertBlog(blog);
+        return blog.getId();
+    }
 }

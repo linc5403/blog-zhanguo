@@ -12,4 +12,5 @@ public interface BlogDao {
     List<Blog> findBlogsByUsername(String username);
     // 获取blog及其comments
     Blog getBlogDetail(Integer id);
+    void insertBlog(Blog blog);
 }
