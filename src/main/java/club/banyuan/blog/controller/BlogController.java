@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,8 +58,13 @@ public class BlogController {
 
     // 展示创建blog的页面
     @GetMapping("/blog/create")
-    String showCreatePage() {
-        return "create";
+    String showCreatePage(HttpSession session) {
+        if (session.getAttribute("USER") != null) {
+            return "create";
+        }
+        else {
+            return "redirect:/login";
+        }
     }
 
     // 用户提交blog
