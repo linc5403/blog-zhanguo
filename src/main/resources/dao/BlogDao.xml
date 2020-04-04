@@ -55,6 +55,13 @@
             FROM blog JOIN user ON blog.user_id = user.id WHERE user.name= #{username}
     </select>
 
+    <select id="getAllBlogs" resultMap="blogMap">
+        SELECT blog.id, blog.title, blog.content, blog.created_time, blog.user_id,
+            user.id as author_id, user.email as author_email,
+            user.password as author_password, user.name as author_name
+            FROM blog JOIN user ON blog.user_id = user.id ORDER BY blog.id desc
+    </select>
+
     <insert id="insertBlog" parameterType="club.banyuan.blog.bean.Blog">
         <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
             SELECT LAST_INSERT_ID()

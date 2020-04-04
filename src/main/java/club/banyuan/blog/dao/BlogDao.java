@@ -10,7 +10,9 @@ import java.util.List;
 public interface BlogDao {
     Blog findBlogById(Integer id);
     List<Blog> findBlogsByUsername(String username);
+    List<Blog> getAllBlogs();
     // 获取blog及其comments
     Blog getBlogDetail(Integer id);
     void insertBlog(Blog blog);
+
 }
