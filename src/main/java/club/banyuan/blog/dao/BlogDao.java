@@ -14,5 +14,6 @@ public interface BlogDao {
     // 获取blog及其comments
     Blog getBlogDetail(Integer id);
     void insertBlog(Blog blog);
-
+    void updateBlog(Blog blog);
+    void deleteBlog(Integer id);
 }

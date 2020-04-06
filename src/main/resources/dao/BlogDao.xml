@@ -71,4 +71,12 @@
         (#{title}, #{content}, #{author.id})
     </insert>
 
+    <update id="updateBlog" parameterType="club.banyuan.blog.bean.Blog">
+        UPDATE blog SET title=#{title}, content=#{content} WHERE `id` = #{id}
+    </update>
+
+    <delete id="deleteBlog" parameterType="java.lang.Integer">
+        DELETE FROM blog where `id` = #{id}
+    </delete>
+
 </mapper>

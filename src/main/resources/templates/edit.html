@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+<!--需要的对象:
+  blog
+-->
 
 <head lang="en">
   <meta charset="UTF-8">
@@ -55,7 +58,7 @@
 
     <div class="col-sm-8">
 
-      <form class="form-create-blog" method="post" th:action="|/blogs/${blog.id}/edit|">
+      <form class="form-create-blog" method="post" th:action="|/admin/blog/${blog.id}/edit|">
         <input type="hidden" name="_method" value="put">
         <div class="form-group">
           <label for="title">标题</label>

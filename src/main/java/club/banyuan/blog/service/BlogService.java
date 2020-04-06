@@ -38,4 +38,12 @@ public class BlogService {
         PageHelper.startPage(page, size);
         return new PageInfo<Blog>(blogDao.getAllBlogs());
     }
+
+    public void updateBlog(Blog blog) {
+        blogDao.updateBlog(blog);
+    }
+
+    public void deleteBlog(Integer blogId) {
+        blogDao.deleteBlog(blogId);
+    }
 }
