@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginInterceptor()).addPathPatterns(new String[]{"/admin", "/admin/**"});
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns(new String[]{"/admin", "/admin/**", "login/change-password"});
     }
 }
 

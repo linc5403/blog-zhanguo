@@ -18,4 +18,7 @@ public class UserService {
     public User findUserByName(String name) {
         return userDao.findUserByName(name);
     }
+    public void updatePasswd(String newPasswd, Integer id) {
+        userDao.updatePasswd(newPasswd, id);
+    }
 }

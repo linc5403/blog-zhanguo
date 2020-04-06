@@ -6,4 +6,7 @@
     <select id="findUserByName" resultType="club.banyuan.blog.bean.User">
         SELECT * FROM user WHERE name = #{username}
     </select>
+    <update id="updatePasswd">
+        UPDATE user SET password=#{passwd} where `id` = #{id}
+    </update>
 </mapper>
