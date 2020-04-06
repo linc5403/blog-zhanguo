@@ -95,4 +95,11 @@ public class AdminController {
         blogService.updateBlog(blog);
         return "redirect:/blog/"+blogId;
     }
+
+    @DeleteMapping("/blog/{id}")
+    String deleteBlog(@PathVariable(value = "id") Integer blogId
+    ) {
+        blogService.deleteBlog(blogId);
+        return "redirect:/admin/blogs";
+    }
 }
