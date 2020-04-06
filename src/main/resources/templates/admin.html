@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>账号管理</title>
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/blog.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <script src="//cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>用户名
+    <!--/*@thymesVar id="user" type="club.banyuan.blog.bean.User"*/-->
+    <td th:text="${user.name}">"${user.name}"</td>
+  </h2>
+
+  <h2>
+    <div>创建blog
+      <a href="/admin/blog/create" class="btn btn-primary blog-post-create-btn">创建新博客</a>
+    </div>
+  </h2>
+
+  <h2>
+    <!-- 这里应该是一个按钮,用户点击后刷新这个地方,输入旧密码和新密码   -->
+    修改密码
+  </h2>
+  <h2>
+    忘记密码
+  </h2>
+
+  <h2>
+    <div>展示头像和修改头像</div>
+  </h2>
+
+  <h2>
+    <div>是否允许修改邮箱</div>
+  </h2>
+
+  <h2>
+    <div>修改当前用户名下所有的blog</div>
+  </h2>
+
+</div>
+
+</body>
+</html>

@@ -18,7 +18,10 @@ public class LoginController {
     UserService userService;
 
     @GetMapping("/login")
-    String showLogin() {
+    String showLogin(HttpSession session,
+                     @RequestParam(value = "next", required = false) String next) {
+        if (next != null)
+            session.setAttribute("NEXT", next);
         return "login";
     }
 
@@ -29,7 +32,13 @@ public class LoginController {
         User user = userService.findUserByName(name);
         if (user.getPassword().equals(passwd)) {
             session.setAttribute("USER", user);
-            return "redirect:/admin";
+            String next = (String)session.getAttribute("NEXT");
+            if (next != null) {
+                session.removeAttribute("NEXT");
+                return "redirect:" + next;
+            }
+            else
+                return "redirect:/admin";
         } else {
             return "/login";
         }

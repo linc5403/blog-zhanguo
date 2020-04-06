@@ -56,30 +56,5 @@ public class BlogController {
         return "item";
     }
 
-    // 展示创建blog的页面
-    @GetMapping("/blog/create")
-    String showCreatePage(HttpSession session) {
-        if (session.getAttribute("USER") != null) {
-            return "create";
-        }
-        else {
-            return "redirect:/login";
-        }
-    }
 
-    // 用户提交blog
-    @PostMapping("/blog/create")
-    String createBlog(@RequestParam(value = "title") String title,
-                      @RequestParam(value = "content") String content) {
-        //????blogger?????
-        User user_aa = userService.findUserByName("aa");
-        Blog blog = new Blog();
-        blog.setAuthor(user_aa);
-        blog.setTitle(title);
-        blog.setContent(content);
-        // 将blog增加进数据库
-        Integer blogId = blogService.addBlog(blog);
-        // 展示所创建的blog ?? item.html
-        return "redirect:/blog/" + blogId;
-    }
 }

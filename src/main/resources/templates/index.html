@@ -67,26 +67,6 @@
 
       <hr>
 
-      <div class="blog-post" th:remove="all">
-        <h3 class="blog-post-title"><a href="./item.html">Vel volutpat dictum sagittis lacus</a></h3>
-        <p class="blog-post-meta">2015年2月3日 标签：<a href="#">Linux</a></p>
-        <p class="blog-post-content">Morbi pede vestibulum, nisl orci suspendisse. Amet erat gravida fringilla aliquam
-          metus, dui vitae cras metus varius etiam tempus, in et. Dui venenatis dolor, amet magna facilisis, fames ut
-          imperdiet eros ut ligula justo, et non viverra a viverra mollis, arcu gravida. Fermentum eu erat, eros enim
-          nulla vivamus praesent hymenaeos dui. Sollic.</p>
-      </div>
-
-      <hr>
-
-      <div class="blog-post" th:remove="all">
-        <h3 class="blog-post-title"><a href="./item.html">Donec mauris nullam praesent eget</a></h3>
-        <p class="blog-post-meta">2015年2月3日 标签：<a href="#">Web开发</a></p>
-        <p class="blog-post-content">Laoreet magna sit gravida eu neque, erat porttitor aenean iaculis leo ac, aliquam
-          commodo malesuada ullamcorper, iaculis interdum quam, dui tortor id. Convallis felis nunc condimentum.</p>
-      </div>
-
-      <hr>
-
       <nav>
         <ul class="pager">
           <li th:if="${blogs.hasPreviousPage}" class="previous"><a th:href="@{'/index'+ '?page=' + ${blogs.prePage}}"><span aria-hidden="true">&larr;</span> 上一页</a></li>

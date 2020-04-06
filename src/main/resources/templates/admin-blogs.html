@@ -13,6 +13,10 @@
   <script src="//cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 
+<!--/*@thymesVar id="blogs" type="com.github.pagehelper.PageInfo"*/-->
+<!--/*@thymesVar id="blog" type="club.banyuan.blog.bean.Blog"*/-->
+<!--/*@thymesVar id="username" type="java.lang.String"*/-->
+
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
@@ -72,7 +76,7 @@
           <td class="blog-post-title" th:text="${blog.title}">"${blog.title}"</td>
           <td class="blog-post-create-date" th:text="${#dates.format(blog.createdTime, 'yyyy年MM月dd日')}">"{blog.createdTime}"</td>
           <td>
-            <a class="btn btn-primary blog-post-edit-btn" th:href="@{'/blogs/' + ${blog.id} + '/edit'}">编辑</a>
+            <a class="btn btn-primary blog-post-edit-btn" th:href="@{'/admin/blog/' + ${blog.id} + '/edit'}">编辑</a>
             <form class="blog-post-delete-form" th:action="|/blog/${blog.id}|" method="post" onsubmit="return confirm('确定要删除这篇文章吗？');">
               <input type="hidden" name="_method" value="delete">
               <button type="submit" class="btn btn-danger blog-post-delete-btn">删除</button>
@@ -95,10 +99,6 @@
 
     <nav>
       <ul class="pager">
-<!--
-        <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> 上一页</a></li>
-        <li class="next"><a href="#">下一页 <span aria-hidden="true">&rarr;</span></a></li>
--->
 
         <li th:if="${blogs.hasPreviousPage}" class="previous"><a th:href="@{'/admin/'+ ${username} + '?page=' + ${blogs.prePage}}"><span aria-hidden="true">&larr;</span> 上一页</a></li>
         <li th:if="${blogs.hasNextPage}" class="next"><a th:href="@{'/admin/'+ ${username} + '?page=' + ${blogs.nextPage}}">下一页 <span aria-hidden="true">&rarr;</span></a></li>
