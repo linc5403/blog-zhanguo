@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.Optional;
 
 @Controller
@@ -22,23 +23,34 @@ public class AdminController {
     @Autowired
     UserService userService;
 
+    /*
     @GetMapping("")
     String showAdminPage(HttpSession session, Model model) {
         User user = (User)session.getAttribute("USER");
         model.addAttribute("user", user);
         return "admin";
     }
+    */
+
+    @GetMapping("")
+    String showAdminPage(Principal principal, Model model) {
+        String userName = principal.getName();
+        User user = userService.findUserByName(userName);
+        model.addAttribute("user", user);
+        return "admin";
+    }
+
 
     @GetMapping("/blogs")
     String showAdminBlogsPage(@RequestParam Optional<Integer> page,
                          @RequestParam Optional<Integer> size,
-                         HttpSession session,
+                         Principal principal,
                          Model model) {
-        User user = (User)session.getAttribute("USER");
-        model.addAttribute("username", user.getName());
+        String username = principal.getName();
+        model.addAttribute("username", username);
         PageHelper.startPage(page.orElse(1), size.orElse(10));
         model.addAttribute("blogs",
-                new PageInfo<Blog>(blogService.showAuthorBlogs(user.getName())));
+                new PageInfo<Blog>(blogService.showAuthorBlogs(username)));
         return "admin-blogs";
     }
 
@@ -49,22 +61,18 @@ public class AdminController {
     // 展示创建blog的页面
     @GetMapping("/blog/create")
     String showCreatePage(HttpSession session) {
-        if (session.getAttribute("USER") != null) {
-            return "create";
-        }
-        else {
-            return "redirect:/login";
-        }
+        return "create";
     }
 
     // 用户提交blog
     @PostMapping("/blog/create")
     String createBlog(@RequestParam(value = "title") String title,
-                      @RequestParam(value = "content") String content) {
+                      @RequestParam(value = "content") String content,
+                      Principal principal) {
         //????blogger?????
-        User user_aa = userService.findUserByName("aa");
+        User user = userService.findUserByName(principal.getName());
         Blog blog = new Blog();
-        blog.setAuthor(user_aa);
+        blog.setAuthor(user);
         blog.setTitle(title);
         blog.setContent(content);
         // 将blog增加进数据库

@@ -27,6 +27,7 @@ public class LoginController {
         return "login";
     }
 
+    /*
     @PostMapping("/login")
     String login(@RequestParam(value = "username") String name,
                  @RequestParam(value = "password") String passwd,
@@ -45,6 +46,7 @@ public class LoginController {
             return "/login";
         }
     }
+    */
 
     @PostMapping("/login/change-password")
     String changePassword(HttpSession session,
