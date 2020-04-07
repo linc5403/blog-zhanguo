@@ -1,0 +1,93 @@
+* blog项目
+  #+begin_src plantuml :file ./img/overview.svg
+  @startmindmap
+  * 博客项目
+  ** 主页
+  *** 浏览文章
+  *** 搜索博客
+  ** 登录
+  *** 忘记密码
+  ** 注册
+  *** 邮件验证
+  ** 管理
+  *** 修改密码
+  *** 文章管理
+  @endmindmap
+  #+end_src
+
+  #+RESULTS:
+  [[file:./img/overview.svg]]
+
+** TODO 主页
+*** TODO 展示blog列表
+    1. 所有人的blog按照时间倒排
+    2. 按照blogger来进行展示（调用blogger的接口）
+
+*** 已有
+   item.html
+   list.html
+
+*** TODO 优化
+    
+** TODO registe 注册
+   1. 加一个邮件验证
+   2. 验证用户名示范已经存在
+
+*** 问题
+   1. Spring 邮件服务器？？
+   2. 如何产生邮件认证的参数？？
+   3. 已注册未认证的用户如何处理？？
+   4. 数据库里面应该做些什么改动？？
+
+** TODO login 登陆
+
+   忘记密码
+
+   邮件->重置密码   
+
+** TODO 用户管理
+*** blog的管理
+**** create
+**** delete
+**** update
+
+*** TODO 用户信息管理
+**** 修改密码
+**** 昵称
+**** 头像
+     
+     文件上传和图片展示
+     
+     1. 如果没有头像？？？
+     2. 用户管理有一个地方可以修改头像
+	1) 上传upload
+	   浏览器-> form multi-part file post传输到？？Controller
+
+	   Controller
+	   
+	       1. 保存文件到本地硬盘(LSB?) -> DB(?) -> 存储(本机硬盘, DB, 存储服务器，存储系统，云端)
+	       
+	       2. user table(avatar)
+	       
+	2) show
+     3. 头像输出存放在哪里？？
+     
+**** slogan
+    
+** TODO 搜索功能
+   blog标题，发表时间，内容，blogger，comment
+
+   1. mybatis如何进行查询
+   2. elasticsearch
+
+** TODO 标签功能
+
+** 技术点
+   1. email
+   2. 缓存 - redis
+      1) session
+      2) 验证过程
+   3. 搜索 - es
+   4. 安全性 - spring security
+   5. 部署 - docker
+   6. 分布式 - rabbitMQ

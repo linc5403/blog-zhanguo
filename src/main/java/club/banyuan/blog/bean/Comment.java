@@ -9,5 +9,7 @@ public class Comment {
     Integer id;
     Date createdTime;
     String content;
-    User commenter;
+    // Integer userId;
+    User commenter; //发表评论的用户
+    Integer blogId;
 }

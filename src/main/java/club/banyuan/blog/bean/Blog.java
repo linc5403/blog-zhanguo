@@ -11,6 +11,7 @@ public class Blog {
     String title;
     String content;
     Date createdTime;
+    // Integer userId;
     User author;
     List<Comment> comments;
 }
