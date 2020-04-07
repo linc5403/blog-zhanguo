@@ -44,9 +44,9 @@
   <p th:text="${message}"></p>
 </div>
 
+<!--/*@thymesVar id="user" type="club.banyuan.blog.bean.User"*/-->
 <div class="container">
   <h2>用户名
-    <!--/*@thymesVar id="user" type="club.banyuan.blog.bean.User"*/-->
     <td th:text="${user.name}">"${user.name}"</td>
   </h2>
 
@@ -65,7 +65,17 @@
   </h2>
 
   <h2>
-    <div>展示头像和修改头像</div>
+    <div>展示头像和修改头像
+      <tr></tr>
+      <!-- 用户头像的地址使用什么来获取 -->
+      <img th:src="'/avatar/' + ${user.name}">
+      <tr></tr>
+      <form method="POST" enctype="multipart/form-data" action="/upload">
+        File to upload: <input type="file" name="file"><br />
+        Name: <input type="text" name="name"><br /> <br />
+        <input type="submit" value="Upload"> Press here to upload the file!
+      </form>
+    </div>
   </h2>
 
   <h2>

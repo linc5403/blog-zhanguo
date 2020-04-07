@@ -7,4 +7,6 @@ import club.banyuan.blog.bean.User;
 public interface UserDao {
     User findUserByName(String username);
     void updatePasswd(String passwd, Integer id);
+    void updateAvatar(Integer id, String avatarPath);
+    User getUserById(Integer id);
 }

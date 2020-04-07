@@ -60,14 +60,12 @@ public class LoginController {
             user.setPassword(newPassword);
             userService.updatePasswd(newPassword, user.getId());
             model.addAttribute("message", "修改密码成功");
-            model.addAttribute("user", user);
-            return "/admin";
         } else {
             // 原始密码不正确,怎么处理??
             model.addAttribute("message", "原始密码不正确");
-            model.addAttribute("user", user);
-            return "/admin";
         }
+        model.addAttribute("user", user);
+        return "/admin";
     }
 
     @PostMapping("/logout")
