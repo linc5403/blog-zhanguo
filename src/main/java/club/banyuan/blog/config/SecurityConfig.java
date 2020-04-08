@@ -35,8 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").authenticated()
                 .anyRequest().permitAll()
             .and()
-                .formLogin().loginPage("/login")
-                            .defaultSuccessUrl("/admin")
+                .formLogin().loginPage("/login") // GetMapping controller 的url
+                            .defaultSuccessUrl("/admin") // 如果用户直接访问的login，应该跳转到什么url；如果用户访问的其他url，跳转的之前的url
             .and()
                 .logout()
                     .invalidateHttpSession(true)
