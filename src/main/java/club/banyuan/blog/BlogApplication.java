@@ -23,6 +23,7 @@ public class BlogApplication {
 
 	public static void main(String[] args) throws MessagingException {
 		ApplicationContext context =  SpringApplication.run(BlogApplication.class, args);
+		/*
 		UserDao userDao = (UserDao) context.getBean(UserDao.class);
 		User user1 = userDao.findUserByName("aa");
 		System.out.println(user1.toString());
@@ -31,9 +32,10 @@ public class BlogApplication {
 		System.out.println(blog);
 		List<Blog> blogs = blogDao.findBlogsByUsername("aa");
 		System.out.println(blogs);
+		 */
 
-		// MailService mailService = (MailService) context.getBean(MailService.class);
-		// mailService.testSendMail();
+		MailService mailService = (MailService) context.getBean(MailService.class);
+		mailService.sendActiveMessage("aa");
 		RedisService redisService = (RedisService) context.getBean(RedisService.class);
 		redisService.testRedis();
 	}
