@@ -34,10 +34,12 @@ public class BlogApplication {
 		System.out.println(blogs);
 		 */
 
+		/*
 		MailService mailService = (MailService) context.getBean(MailService.class);
 		mailService.sendActiveMessage("aa");
 		RedisService redisService = (RedisService) context.getBean(RedisService.class);
 		redisService.testRedis();
+		 */
 	}
 
 }
